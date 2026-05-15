@@ -100,9 +100,9 @@ const Contact = () => {
             {/* Glass Info Cards */}
             <div className="grid grid-cols-1 gap-6">
               {[
-                { icon: <Phone />, title: 'Executive Line', detail: '+91 7060332238', sub: 'Available 24/7 for urgent quotes', color: 'text-brand-gold' },
-                { icon: <Mail />, title: 'Corporate Mail', detail: 'hindustanoffset@gmail.com', sub: 'Response within 2 business hours', color: 'text-brand-blue' },
-                { icon: <Map />, title: 'Headquarters', detail: 'Santosh Vihar, Arya Nagar, Jwalapur', sub: 'Haridwar, Uttarakhand 249407', color: 'text-brand-gold' }
+                { icon: <Phone />, title: 'Executive Line', details: ['+91 7060332238', '+91 8171114207'], sub: 'Available 24/7 for urgent quotes', color: 'text-brand-gold' },
+                { icon: <Mail />, title: 'Corporate Mail', details: ['hindustanoffset@gmail.com'], sub: 'Response within 2 business hours', color: 'text-brand-blue' },
+                { icon: <Map />, title: 'Headquarters', details: ['Santosh Vihar, Arya Nagar, Jwalapur'], sub: 'Haridwar, Uttarakhand 249407', color: 'text-brand-gold' }
               ].map((item, idx) => (
                 <motion.div 
                   key={idx}
@@ -117,7 +117,11 @@ const Contact = () => {
                     {item.icon}
                   </div>
                   <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.4em] mb-3">{item.title}</h4>
-                  <p className="text-xl font-black text-brand-blue tracking-tighter mb-2">{item.detail}</p>
+                  <div className="mb-2">
+                    {item.details.map((text, i) => (
+                      <p key={i} className="text-xl font-black text-brand-blue tracking-tighter">{text}</p>
+                    ))}
+                  </div>
                   <p className="text-xs text-gray-500 font-medium">{item.sub}</p>
                 </motion.div>
               ))}
