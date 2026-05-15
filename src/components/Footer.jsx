@@ -58,9 +58,9 @@ const Footer = () => {
               <li><Link to="/services" className="text-sm hover:text-brand-gold transition-colors block">Offset Printing</Link></li>
               <li><Link to="/services" className="text-sm hover:text-brand-gold transition-colors block">Digital Printing</Link></li>
               <li><Link to="/services" className="text-sm hover:text-brand-gold transition-colors block">Packaging Solutions</Link></li>
+              <li><Link to="/services" className="text-sm hover:text-brand-gold transition-colors block">Pouches Printing</Link></li>
+              <li><Link to="/services" className="text-sm hover:text-brand-gold transition-colors block">Labels Printing</Link></li>
               <li><Link to="/services" className="text-sm hover:text-brand-gold transition-colors block">Corporate Branding</Link></li>
-              <li><Link to="/services" className="text-sm hover:text-brand-gold transition-colors block">Wedding Cards</Link></li>
-              <li><Link to="/services" className="text-sm hover:text-brand-gold transition-colors block">Brochures & Catalogs</Link></li>
             </ul>
           </div>
 
@@ -77,11 +77,11 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={20} className="text-brand-gold shrink-0" />
-                <span className="text-sm">098970 34264</span>
+                <span className="text-sm">7060332238, 8171114207</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={20} className="text-brand-gold shrink-0" />
-                <span className="text-sm">info@hindustanoffset.com</span>
+                <span className="text-sm">hindustanoffset@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -94,8 +94,8 @@ const Footer = () => {
               &copy; {new Date().getFullYear()} The Hindustan Offset Printers. All Rights Reserved.
             </p>
             <div className="flex gap-4 text-sm text-gray-400">
-              <Link to="#" className="hover:text-brand-gold">Privacy Policy</Link>
-              <Link to="#" className="hover:text-brand-gold">Terms of Service</Link>
+              <Link to="/privacy-policy" className="hover:text-brand-gold">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-brand-gold">Terms of Service</Link>
             </div>
           </div>
           

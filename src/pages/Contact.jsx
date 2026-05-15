@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Contact = () => {
   const { scrollYProgress } = useScroll();
@@ -17,6 +18,12 @@ const Contact = () => {
 
   return (
     <div className="pt-24 min-h-screen bg-brand-gray pb-20">
+      <SEO 
+        title="Contact Us"
+        description="Get in touch with Hindustan Offset Printers for custom quotes, inquiries, or to discuss your next big printing project."
+        keywords="contact Hindustan Offset, printing quote, printing inquiries, Haridwar printers contact"
+        canonicalUrl="/contact"
+      />
       {/* Header */}
       <section className="py-24 text-center relative overflow-hidden bg-white">
         <motion.div style={{ y: headerY }} className="absolute inset-0 opacity-[0.03]">
@@ -57,7 +64,8 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-bold mb-1">Phone Number</h4>
-                    <p className="text-gray-300 text-sm">098970 34264</p>
+                    <p className="text-gray-300 text-sm">7060332238</p>
+                    <p className="text-gray-300 text-sm">8171114207</p>
                   </div>
                 </div>
 
@@ -67,7 +75,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-bold mb-1">Email Address</h4>
-                    <p className="text-gray-300 text-sm">info@hindustanoffset.com</p>
+                    <p className="text-gray-300 text-sm">hindustanoffset@gmail.com</p>
                   </div>
                 </div>
 
@@ -127,7 +135,13 @@ const Contact = () => {
                     <option>Digital Printing</option>
                     <option>Packaging Solutions</option>
                     <option>Corporate Stationery</option>
-                    <option>Wedding Cards</option>
+                    <option>Pouches Printing</option>
+                    <option>Protein Powder Labels</option>
+                    <option>Cosmetics Labels</option>
+                    <option>Pharma Labels</option>
+                    <option>Liquor Labels</option>
+                    <option>Brochure & Catalogue</option>
+                    <option>Visiting Cards</option>
                     <option>Other</option>
                   </select>
                 </div>

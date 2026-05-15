@@ -29,7 +29,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center text-sm text-gray-300">
             <Phone size={14} className="mr-2 text-brand-gold" />
-            098970 34264
+            7060332238, 8171114207
           </div>
         </div>
 
@@ -51,13 +51,16 @@ const Navbar = () => {
                 Services <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
               </Link>
               {/* Dropdown Mega Menu */}
-              <div className="absolute top-full left-0 mt-4 w-64 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left scale-95 group-hover:scale-100">
+              <div className="absolute top-full left-0 mt-4 w-72 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-left scale-95 group-hover:scale-100">
                 <div className="py-2">
                   <Link to="/services" className="block px-4 py-2 text-sm text-brand-dark-gray hover:bg-brand-gray hover:text-brand-blue">Offset Printing</Link>
                   <Link to="/services" className="block px-4 py-2 text-sm text-brand-dark-gray hover:bg-brand-gray hover:text-brand-blue">Digital Printing</Link>
-                  <Link to="/services" className="block px-4 py-2 text-sm text-brand-dark-gray hover:bg-brand-gray hover:text-brand-blue">Brochure Printing</Link>
-                  <Link to="/services" className="block px-4 py-2 text-sm text-brand-dark-gray hover:bg-brand-gray hover:text-brand-blue">Wedding Card Printing</Link>
                   <Link to="/services" className="block px-4 py-2 text-sm text-brand-dark-gray hover:bg-brand-gray hover:text-brand-blue">Packaging Printing</Link>
+                  <Link to="/services" className="block px-4 py-2 text-sm text-brand-dark-gray hover:bg-brand-gray hover:text-brand-blue">Pouches Printing</Link>
+                  <Link to="/services" className="block px-4 py-2 text-sm text-brand-dark-gray hover:bg-brand-gray hover:text-brand-blue">Protein Powder Labels</Link>
+                  <Link to="/services" className="block px-4 py-2 text-sm text-brand-dark-gray hover:bg-brand-gray hover:text-brand-blue">Cosmetics Labels</Link>
+                  <Link to="/services" className="block px-4 py-2 text-sm text-brand-dark-gray hover:bg-brand-gray hover:text-brand-blue">Pharma Labels</Link>
+                  <Link to="/services" className="block px-4 py-2 text-sm text-brand-dark-gray hover:bg-brand-gray hover:text-brand-blue">Liquor Labels</Link>
                   <div className="border-t border-gray-100 mt-2 pt-2">
                     <Link to="/services" className="block px-4 py-2 text-sm text-brand-gold font-medium hover:bg-brand-gray">View All Services →</Link>
                   </div>
@@ -104,7 +107,7 @@ const Navbar = () => {
             <div className="pt-4 mt-2 border-t border-white/10 flex flex-col gap-3">
               <div className="flex items-center text-sm text-gray-300">
                 <Phone size={14} className="mr-2 text-brand-gold" />
-                098970 34264
+                7060332238, 8171114207
               </div>
               <Link to="/contact">
                 <button onClick={closeMenu} className="w-full bg-brand-gold text-brand-blue font-bold px-6 py-3 rounded-md mt-2">

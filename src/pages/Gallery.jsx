@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { X, ZoomIn } from 'lucide-react';
+import SEO from '../components/SEO';
 
-const categories = ['All', 'Offset Prints', 'Packaging', 'Corporate', 'Wedding Cards'];
+const categories = ['All', 'Offset Prints', 'Packaging', 'Corporate', 'Labels'];
 
 const galleryImages = [
   { id: 1, src: '/images/prints.png', category: 'Offset Prints', title: 'Premium Magazines' },
   { id: 2, src: '/images/hero.png', category: 'Corporate', title: 'Corporate Brochure' },
-  { id: 3, src: '/images/prints.png', category: 'Wedding Cards', title: 'Luxury Wedding Invitation' },
+  { id: 3, src: '/images/prints.png', category: 'Labels', title: 'Cosmetics Labels' },
   { id: 4, src: '/images/machine.png', category: 'Packaging', title: 'Custom Product Box' },
   { id: 5, src: '/images/prints.png', category: 'Offset Prints', title: 'Art Catalogue' },
   { id: 6, src: '/images/hero.png', category: 'Corporate', title: 'Business Stationery Set' },
@@ -26,6 +27,12 @@ const Gallery = () => {
 
   return (
     <div className="pt-24 min-h-screen bg-brand-gray pb-20">
+      <SEO 
+        title="Gallery & Portfolio"
+        description="View our portfolio of offset prints, packaging, corporate branding, and wedding cards produced by Hindustan Offset Printers."
+        keywords="printing portfolio, offset prints gallery, packaging examples, corporate branding portfolio"
+        canonicalUrl="/gallery"
+      />
       {/* Header */}
       <section className="py-24 text-center relative overflow-hidden bg-white">
         <motion.div style={{ y: headerY }} className="absolute inset-0 opacity-[0.03]">

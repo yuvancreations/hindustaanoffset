@@ -1,17 +1,22 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Layers, Image as ImageIcon, BookOpen, CreditCard, ShoppingBag, Stamp, LayoutTemplate, Tag } from 'lucide-react';
+import { Layers, Image as ImageIcon, BookOpen, CreditCard, ShoppingBag, Stamp, Tag, FlaskConical, Droplets, Pill, Wine, Package2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const servicesData = [
   { icon: <Layers size={40} />, title: 'Offset Printing', desc: 'High-volume printing with unmatched color fidelity and crispness for magazines, books, and large runs.' },
   { icon: <ImageIcon size={40} />, title: 'Digital Printing', desc: 'Fast turnaround, high-quality printing for short runs, personalized items, and immediate requirements.' },
   { icon: <BookOpen size={40} />, title: 'Brochure & Catalogue', desc: 'Premium multi-page brochures and catalogues that showcase your products with elegance.' },
   { icon: <CreditCard size={40} />, title: 'Visiting Cards', desc: 'Luxury business cards with premium finishes like gold foil, embossing, and spot UV.' },
-  { icon: <LayoutTemplate size={40} />, title: 'Wedding Cards', desc: 'Exquisite, custom-designed wedding invitations that leave a lasting impression.' },
   { icon: <ShoppingBag size={40} />, title: 'Packaging Printing', desc: 'Custom boxes, cartons, and packaging solutions that enhance your product\'s retail appeal.' },
   { icon: <Tag size={40} />, title: 'Labels & Stickers', desc: 'High-quality adhesive labels and stickers in various shapes, sizes, and finishes.' },
   { icon: <Stamp size={40} />, title: 'Corporate Branding', desc: 'Complete corporate stationery including letterheads, envelopes, bill books, and folders.' },
+  { icon: <Package2 size={40} />, title: 'Pouches Printing', desc: 'High-quality custom pouch printing for food, pharma, and consumer goods with premium finishes.' },
+  { icon: <FlaskConical size={40} />, title: 'Protein Powder Labels', desc: 'Durable, vibrant supplement labels for protein powders, pre-workouts, and health products.' },
+  { icon: <Droplets size={40} />, title: 'Cosmetics Labels', desc: 'Premium cosmetic packaging labels that elevate your beauty brand with luxury print quality.' },
+  { icon: <Pill size={40} />, title: 'Pharma Labels', desc: 'Compliant pharmaceutical labels with precise detail, barcodes, and regulatory-grade printing.' },
+  { icon: <Wine size={40} />, title: 'Liquor Labels', desc: 'Premium liquor bottle labels combining rich color reproduction with premium foil and UV effects.' },
 ];
 
 const Services = () => {
@@ -20,6 +25,12 @@ const Services = () => {
 
   return (
     <div className="pt-24 min-h-screen bg-brand-gray">
+      <SEO 
+        title="Our Services"
+        description="Comprehensive printing solutions including offset printing, digital printing, packaging solutions, brochures, and more by Hindustan Offset Printers."
+        keywords="printing services, offset printing services, digital printing services, packaging solutions, corporate stationery, Haridwar printers"
+        canonicalUrl="/services"
+      />
       {/* Header */}
       <section className="py-32 bg-brand-black text-white text-center relative overflow-hidden">
         <motion.div style={{ y: headerY }} className="absolute inset-0 opacity-10">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Target, Flag, Users, Award } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const About = () => {
   const { scrollYProgress } = useScroll();
@@ -8,6 +9,12 @@ const About = () => {
   
   return (
     <div className="pt-24 min-h-screen bg-brand-gray">
+      <SEO 
+        title="About Us"
+        description="Learn about the Hindustan Offset Printers's decades of printing excellence, driven by passion, precision, and technology."
+        keywords="about Hindustan Offset, printing excellence, printing technology, printing history Haridwar"
+        canonicalUrl="/about"
+      />
       {/* Hero Section */}
       <section className="relative py-32 bg-brand-blue text-white overflow-hidden">
         <motion.div className="absolute inset-0 opacity-10" style={{ y: heroBgY }}>
@@ -68,6 +75,46 @@ const About = () => {
                 </div>
               </div>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Pillars Section */}
+      <section className="py-20 bg-brand-gray border-t border-gray-200">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Our <span className="text-brand-gold">Pillars</span></h2>
+            <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-6"></div>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              The visionary leadership driving our excellence and innovation.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {[
+              { name: 'John Doe', role: 'Founder & CEO', image: '/images/hero.png' },
+              { name: 'Jane Smith', role: 'Operations Director', image: '/images/hero.png' },
+              { name: 'Michael Johnson', role: 'Head of Production', image: '/images/hero.png' },
+              { name: 'Sarah Williams', role: 'Creative Lead', image: '/images/hero.png' },
+            ].map((pillar, idx) => (
+              <motion.div 
+                key={idx}
+                whileHover={{ y: -10 }}
+                className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 group"
+              >
+                <div className="relative h-64 overflow-hidden">
+                  <img src={pillar.image} alt={pillar.name} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+                <div className="p-6 text-center border-t-4 border-brand-gold relative">
+                  <div className="absolute -top-6 left-1/2 -translate-x-1/2 w-12 h-12 bg-brand-gold rounded-full flex items-center justify-center shadow-lg">
+                    <Users className="text-brand-black" size={24} />
+                  </div>
+                  <h3 className="text-xl font-bold text-brand-black mt-4 mb-1">{pillar.name}</h3>
+                  <p className="text-brand-blue font-medium text-sm">{pillar.role}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

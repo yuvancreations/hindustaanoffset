@@ -9,6 +9,8 @@ import Services from './pages/Services';
 import Gallery from './pages/Gallery';
 import Machines from './pages/Machines';
 import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Terms from './pages/Terms';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             <Route path="/gallery" element={<Gallery />} />
             <Route path="/machines" element={<Machines />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<Terms />} />
           </Routes>
         </main>
         <Footer />

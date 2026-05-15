@@ -1,28 +1,43 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Settings, Maximize, Zap, CheckCircle2 } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const machines = [
   {
-    name: 'Heidelberg Speedmaster',
-    type: '4-Color Offset Press',
-    image: '/images/machine.png',
-    desc: 'The pinnacle of offset printing technology, offering unmatched speed and color consistency for large volume runs.',
-    features: ['Up to 15,000 sheets per hour', 'Automated color control', 'Perfect registration', 'Eco-friendly operation']
-  },
-  {
-    name: 'Konica Minolta AccurioPress',
+    name: 'HP Indigo 6K',
     type: 'Digital Production Press',
-    image: '/images/hero.png',
-    desc: 'State-of-the-art digital press for on-demand, high-quality short runs and variable data printing.',
-    features: ['High-resolution output (3600 x 1200 dpi)', 'Extensive media support', 'Inline finishing options', 'Quick turnaround time']
+    image: '/images/machine.png',
+    desc: 'The HP Indigo 6K is an industry-leading digital press delivering offset-like quality on a wide range of substrates. Perfect for short-to-medium runs with stunning color accuracy.',
+    features: ['Up to 6,000 B2 sheets/hour', '7-color ink system for vibrant output', 'Ideal for labels, packaging & folding carton', 'Variable data and personalization ready']
   },
   {
-    name: 'Polar High-Speed Cutter',
-    type: 'Finishing Equipment',
+    name: 'Haotian',
+    type: 'Flexo Label Press',
+    image: '/images/hero.png',
+    desc: 'The Haotian flexographic label press is engineered for high-speed, precision label printing with consistent quality across long production runs at competitive speeds.',
+    features: ['High-speed flexographic label printing', 'Excellent register accuracy', 'Supports multiple label substrates', 'UV curing for durable output']
+  },
+  {
+    name: 'Multitec S1 8 Color',
+    type: '8-Color Offset Press',
     image: '/images/machine.png',
-    desc: 'Precision cutting machine ensuring millimeter-perfect finishing for all printed materials.',
-    features: ['Programmable cutting sequences', 'Optical cutting line indicator', 'High-speed operation', 'Maximum safety standards']
+    desc: 'The Multitec S1 8-Color machine delivers world-class multi-color offset printing with precision registration and superior color management for premium packaging and labels.',
+    features: ['8-color simultaneous printing', 'High-speed production output', 'Premium color fidelity & consistency', 'Suitable for labels and packaging cartons']
+  },
+  {
+    name: 'Multitec E1 8 Color',
+    type: '8-Color Offset Press',
+    image: '/images/hero.png',
+    desc: 'The Multitec E1 8-Color press brings efficiency and excellence together, offering high-volume 8-color printing for labels, pouches, and specialty packaging with precision results.',
+    features: ['8-color offset precision printing', 'Enhanced speed and throughput', 'Low waste and eco-efficient operation', 'Versatile substrate compatibility']
+  },
+  {
+    name: 'JETSCI Monotech',
+    type: 'Inkjet Inspection System',
+    image: '/images/machine.png',
+    desc: 'The JETSCI Monotech is an advanced inkjet printing and inspection system ensuring 100% quality control, variable barcodes, QR codes, and high-resolution coding on labels and packaging.',
+    features: ['100% print quality inspection', 'Variable barcode & QR code printing', 'High-speed inspection up to 150 m/min', 'Integrated defect detection system']
   }
 ];
 
@@ -32,6 +47,12 @@ const Machines = () => {
 
   return (
     <div className="pt-24 min-h-screen bg-brand-gray pb-20">
+      <SEO 
+        title="Our Machines"
+        description="Explore the advanced printing infrastructure at Hindustan Offset Printers, including HP Indigo 6K, Haotian, Multitec S1 8 Color, Multitec E1 8 Color, and JETSCI Monotech."
+        keywords="HP Indigo 6K, Haotian label press, Multitec S1, Multitec E1, JETSCI Monotech, printing infrastructure, offset printing machines"
+        canonicalUrl="/machines"
+      />
       {/* Header */}
       <section className="py-24 text-center bg-brand-black text-white relative overflow-hidden">
         <motion.div style={{ y: headerY }} className="absolute inset-0 opacity-20">

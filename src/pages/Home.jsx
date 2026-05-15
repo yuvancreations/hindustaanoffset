@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Printer, ShieldCheck, Clock, Award, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const Home = () => {
   const { scrollY } = useScroll();
@@ -10,6 +11,12 @@ const Home = () => {
 
   return (
     <div className="bg-brand-gray min-h-screen">
+      <SEO 
+        title="Home"
+        description="The Hindustan Offset Printers offers premium offset and digital printing services, packaging, and corporate identity solutions."
+        keywords="Hindustan Offset, premium printing, offset printing Haridwar, digital printing, packaging solutions"
+        canonicalUrl="/"
+      />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image & Overlay */}
@@ -123,19 +130,24 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {['Offset Printing', 'Digital Printing', 'Packaging Solutions', 'Corporate Identity'].map((service, idx) => (
+            {[
+              { name: 'Offset Printing', img: '/images/prints.png' },
+              { name: 'Digital Printing', img: '/images/prints.png' },
+              { name: 'Packaging Solutions', img: '/images/machine.png' },
+              { name: 'Labels & Pouches', img: '/images/prints.png' },
+            ].map((service, idx) => (
               <motion.div 
                 key={idx}
                 whileHover={{ y: -5 }}
                 className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100 group"
               >
                 <div className="h-48 overflow-hidden relative">
-                  <img src="/images/prints.png" alt={service} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <img src={service.img} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                  <h3 className="absolute bottom-4 left-4 text-white text-xl font-bold">{service}</h3>
+                  <h3 className="absolute bottom-4 left-4 text-white text-xl font-bold">{service.name}</h3>
                 </div>
                 <div className="p-6">
-                  <p className="text-gray-600 mb-4 text-sm">High-quality, precision-driven {service.toLowerCase()} tailored to your specific business requirements.</p>
+                  <p className="text-gray-600 mb-4 text-sm">High-quality, precision-driven {service.name.toLowerCase()} tailored to your specific business requirements.</p>
                   <Link to="/services" className="text-brand-gold font-bold text-sm flex items-center gap-2 group-hover:translate-x-2 transition-transform">
                     Learn More <ArrowRight size={14} />
                   </Link>
@@ -188,6 +200,42 @@ const Home = () => {
                 <div className="font-semibold">Projects Delivered</div>
               </motion.div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Trusted Clients Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-black mb-4">Trusted By <span className="text-brand-gold">Leading Brands</span></h2>
+            <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-6"></div>
+            <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+              We are proud to serve some of India's most recognized and respected brands across industries.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+            {[
+              'Color Essence', 'Dabur India', 'Patanjali', 'Mascot Health Series',
+              'Cimera Care', 'Eureka Forbes', 'Mahindra & Mahindra', 'Exide Industries',
+              'Havells India', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs',
+              'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever',
+              'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience',
+              'KTL', 'National Plasto Moulding', 'Cello'
+            ].map((client, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.04 }}
+                whileHover={{ scale: 1.05, y: -3 }}
+                className="bg-brand-gray border border-gray-200 rounded-xl p-4 flex items-center justify-center text-center hover:border-brand-gold hover:shadow-lg transition-all cursor-default group"
+              >
+                <span className="text-xs sm:text-sm font-semibold text-brand-dark-gray group-hover:text-brand-blue transition-colors leading-tight">{client}</span>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
