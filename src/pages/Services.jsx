@@ -81,6 +81,33 @@ const Services = () => {
         </div>
       </section>
 
+      {/* Trusted Clients Marquee */}
+      <section className="py-12 bg-white overflow-hidden border-y border-gray-100">
+        <div className="relative logo-fade-left">
+          <div className="flex gap-5 marquee-left w-max">
+            {[
+              'Dabur India', 'Patanjali', 'Havells India', 'Eureka Forbes', 'Exide Industries',
+              'Mahindra & Mahindra', 'Color Essence', 'Mascot Health Series', 'Cimera Care', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs',
+              'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever', 'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience', 'KTL', 'National Plasto Moulding', 'Cello',
+              // duplicate
+              'Dabur India', 'Patanjali', 'Havells India', 'Eureka Forbes', 'Exide Industries',
+              'Mahindra & Mahindra', 'Color Essence', 'Mascot Health Series', 'Cimera Care', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs',
+              'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever', 'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience', 'KTL', 'National Plasto Moulding', 'Cello'
+            ].map((client, idx) => (
+              <div key={idx} className="flex-shrink-0 w-36 h-14 bg-white border border-gray-100 rounded-lg shadow-sm flex items-center justify-center p-2 group hover:border-brand-gold/30 transition-all">
+                <img
+                  src={`/images/clients/${encodeURIComponent(client)}.png`}
+                  alt={`${client} logo`}
+                  className="max-h-8 max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }}
+                />
+                <span className="hidden text-[10px] font-semibold text-brand-dark-gray text-center leading-tight items-center justify-center h-full">{client}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Process Section */}
       <section className="py-20 bg-brand-blue text-white">
         <div className="container mx-auto px-4 md:px-6">

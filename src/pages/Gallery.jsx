@@ -29,7 +29,7 @@ const Gallery = () => {
     <div className="pt-24 min-h-screen bg-brand-gray pb-20">
       <SEO 
         title="Gallery & Portfolio"
-        description="View our portfolio of offset prints, packaging, corporate branding, and wedding cards produced by Hindustan Offset Printers."
+        description="View our portfolio of offset prints, premium packaging, labels, and corporate branding produced by Hindustan Offset Printers."
         keywords="printing portfolio, offset prints gallery, packaging examples, corporate branding portfolio"
         canonicalUrl="/gallery"
       />

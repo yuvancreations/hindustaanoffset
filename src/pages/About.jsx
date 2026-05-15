@@ -86,16 +86,16 @@ const About = () => {
             <h2 className="text-3xl md:text-5xl font-bold mb-4">Our <span className="text-brand-gold">Pillars</span></h2>
             <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-6"></div>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              The visionary leadership driving our excellence and innovation.
+              The leadership team driving our commitment to excellence and innovation.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { name: 'John Doe', role: 'Founder & CEO', image: '/images/hero.png' },
-              { name: 'Jane Smith', role: 'Operations Director', image: '/images/hero.png' },
-              { name: 'Michael Johnson', role: 'Head of Production', image: '/images/hero.png' },
-              { name: 'Sarah Williams', role: 'Creative Lead', image: '/images/hero.png' },
+              { name: 'Naveen Kumar', role: 'Managing Director', image: '/images/hero.png' },
+              { name: 'Ravi Sharma', role: 'Technical Director', image: '/images/hero.png' },
+              { name: 'Pankaj Gupta', role: 'Operations Head', image: '/images/hero.png' },
+              { name: 'Deepak Verma', role: 'Business Development', image: '/images/hero.png' },
             ].map((pillar, idx) => (
               <motion.div 
                 key={idx}
@@ -114,6 +114,40 @@ const About = () => {
                   <p className="text-brand-blue font-medium text-sm">{pillar.role}</p>
                 </div>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trusted Clients Section */}
+      <section className="py-20 bg-white overflow-hidden border-y border-gray-100">
+        <div className="container mx-auto px-4 md:px-6 mb-12">
+          <div className="text-center">
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-black mb-4">Trusted By <span className="text-brand-gold">Industry Leaders</span></h2>
+            <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-6"></div>
+          </div>
+        </div>
+
+        <div className="relative logo-fade-left">
+          <div className="flex gap-5 marquee-left w-max">
+            {[
+              'Dabur India', 'Patanjali', 'Havells India', 'Eureka Forbes', 'Exide Industries',
+              'Mahindra & Mahindra', 'Color Essence', 'Mascot Health Series', 'Cimera Care', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs',
+              'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever', 'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience', 'KTL', 'National Plasto Moulding', 'Cello',
+              // duplicate for seamless loop
+              'Dabur India', 'Patanjali', 'Havells India', 'Eureka Forbes', 'Exide Industries',
+              'Mahindra & Mahindra', 'Color Essence', 'Mascot Health Series', 'Cimera Care', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs',
+              'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever', 'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience', 'KTL', 'National Plasto Moulding', 'Cello'
+            ].map((client, idx) => (
+              <div key={idx} className="flex-shrink-0 w-40 h-16 bg-white border border-gray-100 rounded-lg shadow-sm flex items-center justify-center p-2 group hover:border-brand-gold/30 transition-all">
+                <img
+                  src={`/images/clients/${encodeURIComponent(client)}.png`}
+                  alt={`${client} logo`}
+                  className="max-h-10 max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }}
+                />
+                <span className="hidden text-[10px] font-semibold text-brand-dark-gray text-center leading-tight items-center justify-center h-full">{client}</span>
+              </div>
             ))}
           </div>
         </div>

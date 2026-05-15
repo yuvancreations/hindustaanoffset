@@ -124,7 +124,7 @@ const Contact = () => {
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                  <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="[EMAIL_ADDRESS]" />
+                  <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="example@email.com" />
                 </div>
 
                 <div>
