@@ -1,5 +1,3 @@
-import React from 'react';
-import { Phone } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const WhatsAppButton = () => {

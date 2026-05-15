@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/SEO';
 
@@ -17,7 +16,7 @@ const Terms = () => {
       {/* Header */}
       <section className="py-24 text-center relative overflow-hidden bg-white">
         <motion.div style={{ y: headerY }} className="absolute inset-0 opacity-[0.03]">
-          <img src="/images/machine.png" alt="Background" className="w-full h-[150%] object-cover" />
+          <img src="/images/machine/HP Indigo 6K.avif" alt="Background" className="w-full h-[150%] object-cover" />
         </motion.div>
         <div className="container mx-auto px-4 relative z-10">
           <h1 className="text-4xl md:text-6xl font-bold mb-4 text-brand-black">Terms & <span className="text-brand-blue">Conditions</span></h1>

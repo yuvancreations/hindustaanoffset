@@ -1,4 +1,3 @@
-import React from 'react';
 import { Helmet } from 'react-helmet-async';
 
 const SEO = ({ title, description, keywords, canonicalUrl }) => {
@@ -17,14 +16,14 @@ const SEO = ({ title, description, keywords, canonicalUrl }) => {
       <meta property="og:url" content={fullUrl} />
       <meta property="og:title" content={title ? `${title} | Hindustan Offset Printers` : 'Hindustan Offset Printers'} />
       <meta property="og:description" content={description || "Premium offset and digital printing services in Haridwar, Uttarakhand."} />
-      <meta property="og:image" content={`${siteUrl}/images/hero.png`} />
+      <meta property="og:image" content={`${siteUrl}/images/logo/Hindustan.png`} />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content={fullUrl} />
       <meta property="twitter:title" content={title ? `${title} | Hindustan Offset Printers` : 'Hindustan Offset Printers'} />
       <meta property="twitter:description" content={description || "Premium offset and digital printing services in Haridwar, Uttarakhand."} />
-      <meta property="twitter:image" content={`${siteUrl}/images/hero.png`} />
+      <meta property="twitter:image" content={`${siteUrl}/images/logo/Hindustan.png`} />
 
       {/* Local Business Schema */}
       <script type="application/ld+json">
@@ -32,7 +31,7 @@ const SEO = ({ title, description, keywords, canonicalUrl }) => {
           "@context": "https://schema.org",
           "@type": "LocalBusiness",
           "name": "Hindustan Offset Printers",
-          "image": `${siteUrl}/images/hero.png`,
+          "image": `${siteUrl}/images/logo/Hindustan.png`,
           "@id": siteUrl,
           "url": siteUrl,
           "telephone": "7060332238",

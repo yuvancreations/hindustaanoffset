@@ -1,13 +1,23 @@
-import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Printer, ShieldCheck, Clock, Award, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Printer, ShieldCheck, Clock, Award, ArrowRight, CheckCircle2, Star, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
+import MachineCarousel from '../components/MachineCarousel';
+
 const Home = () => {
   const { scrollY } = useScroll();
-  const heroBgY = useTransform(scrollY, [0, 1000], ["0%", "50%"]);
-  const sectionBgY = useTransform(scrollY, [1000, 3000], ["-20%", "20%"]);
+  const heroBgY = useTransform(scrollY, [0, 1000], ["0%", "30%"]);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+  };
 
   return (
     <div className="bg-brand-gray min-h-screen">
@@ -19,137 +29,123 @@ const Home = () => {
       />
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image & Overlay */}
         <motion.div className="absolute inset-0 z-0" style={{ y: heroBgY }}>
-          <img src="/images/hero.png" alt="Modern Printing Press" className="w-full h-[120%] object-cover" />
-          <div className="absolute inset-0 bg-brand-blue/80 backdrop-blur-[2px]"></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-brand-black/50"></div>
+          <img src="/images/hero.png" alt="Modern Printing Press" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-brand-blue/70"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-brand-black/40 via-transparent to-brand-black"></div>
         </motion.div>
 
-        <div className="container mx-auto px-4 relative z-10 text-center md:text-left mt-16">
+        <div className="container mx-auto px-4 md:px-8 relative z-10 text-center lg:text-left">
           <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
             className="max-w-4xl"
           >
-            <div className="inline-block px-4 py-1 mb-6 border border-brand-gold/30 rounded-full glass-dark text-brand-gold text-sm font-semibold tracking-widest uppercase">
-              Premium Printing Services
-            </div>
-            <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
-              Where Precision Meets <br className="hidden md:block" />
-              <span className="text-gradient">Perfection.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed">
-              Elevate your brand with The Hindustan Offset Printers. We deliver world-class offset and digital printing solutions with unparalleled quality, speed, and luxury finishing.
-            </p>
+            <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-white/10 border border-white/20 text-brand-gold text-[10px] font-bold tracking-[0.2em] uppercase">
+              <Sparkles size={14} className="text-brand-gold" />
+              Trusted Since 1997
+            </motion.div>
             
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <motion.h1 variants={itemVariants} className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-[1.1] tracking-tight">
+              Premium Printing <br />
+              <span className="text-brand-gold">Excellence.</span>
+            </motion.h1>
+            
+            <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl leading-relaxed">
+              We blend 29 years of legacy with world-class technology to deliver perfection in every single impression.
+            </motion.p>
+            
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <Link to="/contact">
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-brand-gold text-brand-blue font-bold rounded-full shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:bg-white transition-all text-lg flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto px-10 py-4 bg-brand-gold text-brand-blue font-bold rounded-full shadow-xl transition-all uppercase tracking-widest text-sm flex items-center justify-center gap-2"
                 >
-                  Get Quick Quote <ArrowRight size={20} />
+                  Start Project <ArrowRight size={18} />
                 </motion.button>
               </Link>
               <Link to="/services">
                 <motion.button 
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-brand-blue transition-all text-lg"
+                  className="w-full sm:w-auto px-10 py-4 bg-white/10 border border-white/20 text-white font-bold rounded-full transition-all uppercase tracking-widest text-sm backdrop-blur-md"
                 >
-                  Explore Services
+                  Our Services
                 </motion.button>
               </Link>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
-
-        {/* Floating 3D Elements (Decorative) */}
-        <motion.div 
-          animate={{ y: [0, -20, 0] }} 
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute right-[10%] top-[30%] hidden lg:block glass-dark p-6 rounded-2xl shadow-2xl border border-white/10 max-w-xs"
-        >
-          <div className="flex items-center gap-4 mb-3">
-            <div className="w-12 h-12 bg-brand-gold/20 rounded-full flex items-center justify-center text-brand-gold">
-              <Award size={24} />
-            </div>
-            <div>
-              <h4 className="text-white font-bold">25+ Years</h4>
-              <p className="text-sm text-gray-400">of Excellence</p>
-            </div>
-          </div>
-        </motion.div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 bg-brand-black text-white relative">
-        <div className="container mx-auto px-4 md:px-6">
+      {/* Pillars Section */}
+      <section className="py-24 bg-brand-black text-white">
+        <div className="container mx-auto px-4 md:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Why <span className="text-brand-gold">Choose Us</span></h2>
-            <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full"></div>
-            <p className="mt-6 text-gray-400 max-w-2xl mx-auto">We combine state-of-the-art machinery with decades of expertise to deliver prints that speak volumes about your brand.</p>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">Why Choose <span className="text-brand-gold">Hindustan Offset?</span></h2>
+            <div className="w-20 h-1 bg-brand-gold mx-auto rounded-full mb-6"></div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { icon: <Printer size={32} />, title: 'Advanced Tech', desc: 'Equipped with the latest offset and digital presses for ultra-high resolution prints.' },
-              { icon: <Clock size={32} />, title: 'Fast Turnaround', desc: 'Strict adherence to deadlines without compromising a single detail of quality.' },
-              { icon: <ShieldCheck size={32} />, title: 'Premium Quality', desc: 'Rigorous quality checks at every stage to ensure perfect color reproduction.' }
+              { icon: <Printer size={32} />, title: 'Advanced Tech', desc: 'Operating with ultra-high resolution presses for vibrant color ranges and detail.' },
+              { icon: <Clock size={32} />, title: 'Fast Execution', desc: 'Industrial speed paired with strict QC protocols to meet tightest deadlines.' },
+              { icon: <ShieldCheck size={32} />, title: 'Master Quality', desc: '29-point quality check on every batch to ensure 100% consistency.' }
             ].map((feature, idx) => (
               <motion.div 
                 key={idx}
-                whileHover={{ y: -10 }}
-                className="bg-[#1A1A1A] p-8 rounded-2xl border border-white/5 hover:border-brand-gold/30 transition-all group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-white/5 p-10 rounded-3xl border border-white/10 hover:border-brand-gold/40 transition-all duration-500 group"
               >
-                <div className="w-16 h-16 bg-brand-blue rounded-xl flex items-center justify-center text-brand-gold mb-6 group-hover:bg-brand-gold group-hover:text-brand-blue transition-colors">
+                <div className="w-16 h-16 bg-brand-blue rounded-2xl flex items-center justify-center text-brand-gold mb-8 group-hover:bg-brand-gold group-hover:text-brand-blue transition-all">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-bold mb-3">{feature.title}</h3>
-                <p className="text-gray-400 leading-relaxed">{feature.desc}</p>
+                <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{feature.title}</h3>
+                <p className="text-gray-400 leading-relaxed font-light">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Services */}
-      <section className="py-20 bg-brand-gray">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+      {/* Services Grid */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4 md:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
             <div>
-              <h2 className="text-3xl md:text-5xl font-bold text-brand-black mb-4">Our Premium <span className="text-brand-blue">Services</span></h2>
-              <div className="w-24 h-1 bg-brand-gold rounded-full"></div>
+              <h2 className="text-3xl md:text-5xl font-bold text-brand-blue mb-4">Our <span className="text-brand-gold">Core Expertise</span></h2>
+              <div className="w-20 h-1 bg-brand-gold rounded-full"></div>
             </div>
-            <Link to="/services" className="text-brand-blue font-semibold hover:text-brand-gold flex items-center gap-2 mt-6 md:mt-0">
-              View All Services <ArrowRight size={16} />
+            <Link to="/services" className="text-brand-blue font-bold uppercase tracking-widest text-sm flex items-center gap-2 hover:text-brand-gold transition-colors">
+              View All Services <ArrowRight size={18} />
             </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { name: 'Offset Printing', img: '/images/prints.png' },
-              { name: 'Digital Printing', img: '/images/prints.png' },
-              { name: 'Packaging Solutions', img: '/images/machine.png' },
-              { name: 'Labels & Pouches', img: '/images/prints.png' },
+              { name: 'Digital Express', img: '/images/prints.png' },
+              { name: 'Luxury Packaging', img: '/images/machine/HP Indigo 6K.avif' },
+              { name: 'Custom Labels', img: '/images/prints.png' },
             ].map((service, idx) => (
               <motion.div 
                 key={idx}
-                whileHover={{ y: -5 }}
-                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-gray-100 group"
+                whileHover={{ y: -10 }}
+                className="bg-white rounded-[2rem] overflow-hidden shadow-xl border border-gray-100 group"
               >
-                <div className="h-48 overflow-hidden relative">
+                <div className="h-60 overflow-hidden relative">
                   <img src={service.img} alt={service.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                  <h3 className="absolute bottom-4 left-4 text-white text-xl font-bold">{service.name}</h3>
+                  <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/80 to-transparent"></div>
+                  <h3 className="absolute bottom-6 left-6 text-white text-xl font-bold tracking-tight">{service.name}</h3>
                 </div>
-                <div className="p-6">
-                  <p className="text-gray-600 mb-4 text-sm">High-quality, precision-driven {service.name.toLowerCase()} tailored to your specific business requirements.</p>
-                  <Link to="/services" className="text-brand-gold font-bold text-sm flex items-center gap-2 group-hover:translate-x-2 transition-transform">
-                    Learn More <ArrowRight size={14} />
+                <div className="p-8">
+                  <p className="text-gray-500 mb-6 text-sm leading-relaxed">Precision-engineered solutions for global brands demanding high consistency.</p>
+                  <Link to="/services" className="text-brand-blue font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:text-brand-gold transition-colors">
+                    Details <ArrowRight size={14} />
                   </Link>
                 </div>
               </motion.div>
@@ -158,130 +154,55 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Trust & Quality Section */}
-      <section className="py-20 relative overflow-hidden bg-brand-blue text-white">
-        <motion.div className="absolute inset-0 opacity-10" style={{ y: sectionBgY }}>
-          <img src="/images/machine.png" alt="Background Texture" className="w-full h-[150%] object-cover" />
-        </motion.div>
-        <div className="container mx-auto px-4 md:px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2">
-              <h2 className="text-3xl md:text-5xl font-bold mb-6">Uncompromising Quality in Every Print</h2>
-              <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                At Hindustan Offset, we believe that your printed materials are a direct reflection of your brand's quality. That's why we utilize the finest inks, premium papers, and cutting-edge machinery to ensure your vision is realized flawlessly.
-              </p>
-              <ul className="space-y-4 mb-10">
-                {['100% Color Accuracy Guaranteed', 'Eco-Friendly Inks & Materials', 'Strict Quality Control Processes', 'Dedicated Account Managers'].map((item, idx) => (
-                  <li key={idx} className="flex items-center gap-3">
-                    <CheckCircle2 className="text-brand-gold" size={24} />
-                    <span className="text-lg">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link to="/about">
-                <button className="bg-white text-brand-blue font-bold px-8 py-3 rounded-full hover:bg-brand-gold hover:text-white transition-colors">
-                  Discover Our Story
-                </button>
-              </Link>
-            </div>
-            <div className="lg:w-1/2 relative">
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white/10">
-                <img src="/images/machine.png" alt="Our Quality" className="w-full h-auto object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-tr from-brand-blue/50 to-transparent"></div>
-              </div>
-              {/* Floating Stat Card */}
-              <motion.div 
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                className="absolute -bottom-10 -left-10 bg-brand-gold text-brand-blue p-6 rounded-xl shadow-2xl hidden md:block"
-              >
-                <div className="text-4xl font-extrabold mb-1">10k+</div>
-                <div className="font-semibold">Projects Delivered</div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Machine Carousel Section */}
+      <MachineCarousel />
 
-      {/* Trusted Clients Section */}
-      <section className="py-20 bg-white overflow-hidden">
-        <div className="container mx-auto px-4 md:px-6 mb-12">
-          <div className="text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-brand-black mb-4">Trusted By <span className="text-brand-gold">Leading Brands</span></h2>
-            <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-6"></div>
-            <p className="text-gray-500 max-w-2xl mx-auto text-lg">
-              We are proud to serve some of India's most recognized and respected brands across industries.
-            </p>
-          </div>
+      {/* Clients Section */}
+      <section className="py-24 bg-white overflow-hidden border-y border-gray-50">
+        <div className="container mx-auto px-4 md:px-8 mb-16 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-brand-blue mb-4">Trusted Partners</h2>
+          <div className="w-16 h-1 bg-brand-gold mx-auto rounded-full"></div>
         </div>
 
-        {/* Row 1 — Scrolling left */}
-        <div className="relative mb-6 logo-fade-left">
-          <div className="flex gap-5 marquee-left w-max">
+        <div className="relative logo-fade-left">
+          <div className="flex gap-8 marquee-left w-max py-4">
             {[
               'Dabur India', 'Patanjali', 'Havells India', 'Eureka Forbes', 'Exide Industries',
               'Mahindra & Mahindra', 'Color Essence', 'Mascot Health Series', 'Cimera Care', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs',
-              // duplicate for seamless loop
-              'Dabur India', 'Patanjali', 'Havells India', 'Eureka Forbes', 'Exide Industries',
-              'Mahindra & Mahindra', 'Color Essence', 'Mascot Health Series', 'Cimera Care', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs'
-            ].map((client, idx) => (
-              <div key={idx} className="flex-shrink-0 w-44 h-20 bg-white border border-gray-100 rounded-xl shadow-sm flex items-center justify-center p-3 hover:shadow-md hover:border-brand-gold/30 transition-all group">
+              'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever', 'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience', 'KTL', 'National Plasto Moulding', 'Cello'
+            ].concat(['Dabur India', 'Patanjali', 'Havells India']).map((client, idx) => (
+              <div key={idx} className="flex-shrink-0 w-44 h-24 bg-gray-50 rounded-2xl flex items-center justify-center p-6 border border-gray-100 hover:border-brand-gold/30 transition-all group">
                 <img
                   src={`/images/clients/${encodeURIComponent(client)}.png`}
                   alt={`${client} logo`}
-                  className="max-h-12 max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  className="max-h-12 max-w-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
                   onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }}
                 />
-                <span className="hidden text-xs font-semibold text-brand-dark-gray text-center leading-tight items-center justify-center h-full">{client}</span>
+                <span className="hidden text-[10px] font-bold text-brand-blue">{client}</span>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Row 2 — Scrolling right */}
-        <div className="relative logo-fade-left">
-          <div className="flex gap-5 marquee-right w-max">
-            {[
-              'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever',
-              'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience',
-              'KTL', 'National Plasto Moulding', 'Cello',
-              // duplicate for seamless loop
-              'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever',
-              'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience',
-              'KTL', 'National Plasto Moulding', 'Cello'
-            ].map((client, idx) => (
-              <div key={idx} className="flex-shrink-0 w-44 h-20 bg-white border border-gray-100 rounded-xl shadow-sm flex items-center justify-center p-3 hover:shadow-md hover:border-brand-gold/30 transition-all group">
-                <img
-                  src={`/images/clients/${encodeURIComponent(client)}.png`}
-                  alt={`${client} logo`}
-                  className="max-h-12 max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
-                  onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }}
-                />
-                <span className="hidden text-xs font-semibold text-brand-dark-gray text-center leading-tight items-center justify-center h-full">{client}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Edge fade overlays */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white to-transparent z-10" style={{position:'relative',marginTop:'-160px',height:'160px'}}></div>
       </section>
 
-
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-brand-black to-brand-blue text-white text-center px-4">
-        <h2 className="text-4xl md:text-6xl font-bold mb-6">Ready to Start Your <span className="text-brand-gold">Print Project?</span></h2>
-        <p className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">Get in touch with our experts today for a custom quote. We are ready to bring your ideas to life.</p>
-        <Link to="/contact">
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-10 py-4 bg-brand-gold text-brand-blue font-bold text-xl rounded-full shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:bg-white transition-colors"
+      <section className="py-24 bg-brand-blue">
+        <div className="container mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
           >
-            Request a Quote Now
-          </motion.button>
-        </Link>
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight">Ready for <span className="text-brand-gold">Perfection?</span></h2>
+            <p className="text-xl text-gray-300 mb-12 font-light">Join the brands that refuse to settle for anything less than printing excellence.</p>
+            <Link to="/contact">
+              <button className="px-12 py-5 bg-brand-gold text-brand-blue font-black text-lg rounded-full shadow-2xl hover:bg-white transition-all uppercase tracking-widest">
+                Get a Quote
+              </button>
+            </Link>
+          </motion.div>
+        </div>
       </section>
     </div>
   );
