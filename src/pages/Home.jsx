@@ -205,40 +205,69 @@ const Home = () => {
       </section>
 
       {/* Trusted Clients Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="text-center mb-14">
+      <section className="py-20 bg-white overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6 mb-12">
+          <div className="text-center">
             <h2 className="text-3xl md:text-5xl font-bold text-brand-black mb-4">Trusted By <span className="text-brand-gold">Leading Brands</span></h2>
             <div className="w-24 h-1 bg-brand-gold mx-auto rounded-full mb-6"></div>
             <p className="text-gray-500 max-w-2xl mx-auto text-lg">
               We are proud to serve some of India's most recognized and respected brands across industries.
             </p>
           </div>
+        </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+        {/* Row 1 — Scrolling left */}
+        <div className="relative mb-6 logo-fade-left">
+          <div className="flex gap-5 marquee-left w-max">
             {[
-              'Color Essence', 'Dabur India', 'Patanjali', 'Mascot Health Series',
-              'Cimera Care', 'Eureka Forbes', 'Mahindra & Mahindra', 'Exide Industries',
-              'Havells India', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs',
+              'Dabur India', 'Patanjali', 'Havells India', 'Eureka Forbes', 'Exide Industries',
+              'Mahindra & Mahindra', 'Color Essence', 'Mascot Health Series', 'Cimera Care', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs',
+              // duplicate for seamless loop
+              'Dabur India', 'Patanjali', 'Havells India', 'Eureka Forbes', 'Exide Industries',
+              'Mahindra & Mahindra', 'Color Essence', 'Mascot Health Series', 'Cimera Care', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs'
+            ].map((client, idx) => (
+              <div key={idx} className="flex-shrink-0 w-44 h-20 bg-white border border-gray-100 rounded-xl shadow-sm flex items-center justify-center p-3 hover:shadow-md hover:border-brand-gold/30 transition-all group">
+                <img
+                  src={`/images/clients/${encodeURIComponent(client)}.png`}
+                  alt={`${client} logo`}
+                  className="max-h-12 max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }}
+                />
+                <span className="hidden text-xs font-semibold text-brand-dark-gray text-center leading-tight items-center justify-center h-full">{client}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2 — Scrolling right */}
+        <div className="relative logo-fade-left">
+          <div className="flex gap-5 marquee-right w-max">
+            {[
+              'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever',
+              'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience',
+              'KTL', 'National Plasto Moulding', 'Cello',
+              // duplicate for seamless loop
               'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever',
               'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience',
               'KTL', 'National Plasto Moulding', 'Cello'
             ].map((client, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.04 }}
-                whileHover={{ scale: 1.05, y: -3 }}
-                className="bg-brand-gray border border-gray-200 rounded-xl p-4 flex items-center justify-center text-center hover:border-brand-gold hover:shadow-lg transition-all cursor-default group"
-              >
-                <span className="text-xs sm:text-sm font-semibold text-brand-dark-gray group-hover:text-brand-blue transition-colors leading-tight">{client}</span>
-              </motion.div>
+              <div key={idx} className="flex-shrink-0 w-44 h-20 bg-white border border-gray-100 rounded-xl shadow-sm flex items-center justify-center p-3 hover:shadow-md hover:border-brand-gold/30 transition-all group">
+                <img
+                  src={`/images/clients/${encodeURIComponent(client)}.png`}
+                  alt={`${client} logo`}
+                  className="max-h-12 max-w-full object-contain grayscale group-hover:grayscale-0 transition-all duration-300"
+                  onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }}
+                />
+                <span className="hidden text-xs font-semibold text-brand-dark-gray text-center leading-tight items-center justify-center h-full">{client}</span>
+              </div>
             ))}
           </div>
         </div>
+
+        {/* Edge fade overlays */}
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-white to-transparent z-10" style={{position:'relative',marginTop:'-160px',height:'160px'}}></div>
       </section>
+
 
       {/* CTA Section */}
       <section className="py-24 bg-gradient-to-r from-brand-black to-brand-blue text-white text-center px-4">

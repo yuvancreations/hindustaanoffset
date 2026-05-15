@@ -18,7 +18,7 @@ const Contact = () => {
 
   return (
     <div className="pt-24 min-h-screen bg-brand-gray pb-20">
-      <SEO 
+      <SEO
         title="Contact Us"
         description="Get in touch with Hindustan Offset Printers for custom quotes, inquiries, or to discuss your next big printing project."
         keywords="contact Hindustan Offset, printing quote, printing inquiries, Haridwar printers contact"
@@ -44,9 +44,9 @@ const Contact = () => {
           <div className="lg:w-1/3">
             <div className="bg-brand-blue text-white rounded-2xl p-8 shadow-2xl h-full relative overflow-hidden">
               <div className="absolute top-0 right-0 w-40 h-40 bg-brand-gold rounded-bl-full -mr-20 -mt-20 opacity-20"></div>
-              
+
               <h3 className="text-2xl font-bold mb-8 relative z-10">Contact Information</h3>
-              
+
               <div className="space-y-8 relative z-10">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0">
@@ -100,7 +100,7 @@ const Contact = () => {
               <p className="text-gray-500 mb-8">Fill out the form below and we will get back to you with a quote as soon as possible.</p>
 
               {formStatus === 'success' && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="bg-green-50 text-green-700 p-4 rounded-lg mb-6 flex items-center gap-3 border border-green-200"
@@ -114,17 +114,17 @@ const Contact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Your Name *</label>
-                    <input required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="John Doe" />
+                    <input required type="text" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="Full Name" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number *</label>
-                    <input required type="tel" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="+91 98765 43210" />
+                    <input required type="tel" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="+91 00000 00000" />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
-                  <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="john@example.com" />
+                  <input type="email" className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-brand-blue focus:border-brand-blue outline-none transition-all" placeholder="[EMAIL_ADDRESS]" />
                 </div>
 
                 <div>
@@ -169,13 +169,13 @@ const Contact = () => {
           <h3 className="text-xl font-bold mb-4 text-brand-black px-2">Find us on Map</h3>
           <div className="w-full h-[400px] rounded-xl overflow-hidden bg-gray-200">
             {/* Embedded Google Map */}
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13783.336495689718!2d78.1189498083889!3d29.93923058966952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3909477e6f8efb9f%3A0x6b4fb4c1b9f7a77d!2sJwalapur%2C%20Haridwar%2C%20Uttarakhand!5e0!3m2!1sen!2sin!4v1714400000000!5m2!1sen!2sin" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0 }} 
-              allowFullScreen="" 
-              loading="lazy" 
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13783.336495689718!2d78.1189498083889!3d29.93923058966952!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3909477e6f8efb9f%3A0x6b4fb4c1b9f7a77d!2sJwalapur%2C%20Haridwar%2C%20Uttarakhand!5e0!3m2!1sen!2sin!4v1714400000000!5m2!1sen!2sin"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Google Map Location"
             ></iframe>
