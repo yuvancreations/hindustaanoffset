@@ -5,6 +5,8 @@ import SEO from '../components/SEO';
 
 import MachineCarousel from '../components/MachineCarousel';
 
+import TrustedPartners from '../components/TrustedPartners';
+
 const Home = () => {
   const { scrollY } = useScroll();
   const heroBgY = useTransform(scrollY, [0, 1000], ["0%", "30%"]);
@@ -157,33 +159,8 @@ const Home = () => {
       {/* Machine Carousel Section */}
       <MachineCarousel />
 
-      {/* Clients Section */}
-      <section className="py-24 bg-white overflow-hidden border-y border-gray-50">
-        <div className="container mx-auto px-4 md:px-8 mb-16 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-brand-blue mb-4">Trusted Partners</h2>
-          <div className="w-16 h-1 bg-brand-gold mx-auto rounded-full"></div>
-        </div>
-
-        <div className="relative logo-fade-left">
-          <div className="flex gap-8 marquee-left w-max py-4">
-            {[
-              'Dabur India', 'Patanjali', 'Havells India', 'Eureka Forbes', 'Exide Industries',
-              'Mahindra & Mahindra', 'Color Essence', 'Mascot Health Series', 'Cimera Care', 'Protech Telelinks', 'Oscar Remedies', 'BML Parenteral Drugs',
-              'Rivpra Formulation', 'Oteria', 'Orgatre', 'Gainz 4 Forever', 'Signoraware', 'Trueware', 'Pritam International', 'Safecone Lifescience', 'KTL', 'National Plasto Moulding', 'Cello'
-            ].concat(['Dabur India', 'Patanjali', 'Havells India']).map((client, idx) => (
-              <div key={idx} className="flex-shrink-0 w-44 h-24 bg-gray-50 rounded-2xl flex items-center justify-center p-6 border border-gray-100 hover:border-brand-gold/30 transition-all group">
-                <img
-                  src={`/images/clients/${encodeURIComponent(client)}.png`}
-                  alt={`${client} logo`}
-                  className="max-h-12 max-w-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
-                  onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='flex'; }}
-                />
-                <span className="hidden text-[10px] font-bold text-brand-blue">{client}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Trusted Partners Section */}
+      <TrustedPartners />
 
       {/* CTA Section */}
       <section className="py-24 bg-brand-blue">

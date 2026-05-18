@@ -5,8 +5,8 @@ import { machines } from '../data/machinesData';
 import { Link } from 'react-router-dom';
 
 const MachineCarousel = () => {
-  // Featured machines for carousel
-  const featuredMachines = machines.filter(m => [1, 2, 7, 3, 6, 8].includes(m.id));
+  // Featured machines for carousel - all 5 machines
+  const featuredMachines = machines;
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const timeoutRef = useRef(null);
@@ -65,15 +65,15 @@ const MachineCarousel = () => {
               Our <span className="text-brand-gold">Infrastructure.</span>
             </h2>
           </div>
-          
+
           <div className="flex items-center gap-4">
-            <button 
+            <button
               onClick={prevSlide}
               className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-brand-gold hover:text-brand-blue hover:border-brand-gold transition-all duration-500"
             >
               <ChevronLeft size={24} />
             </button>
-            <button 
+            <button
               onClick={nextSlide}
               className="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center text-white hover:bg-brand-gold hover:text-brand-blue hover:border-brand-gold transition-all duration-500"
             >
@@ -100,9 +100,9 @@ const MachineCarousel = () => {
             >
               {/* Machine Image */}
               <div className="w-full lg:w-3/5 h-[350px] lg:h-[550px] rounded-[3rem] overflow-hidden border-4 border-white/5 shadow-2xl relative group">
-                <img 
-                  src={activeMachine.image} 
-                  alt={activeMachine.name} 
+                <img
+                  src={activeMachine.image}
+                  alt={activeMachine.name}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   onError={(e) => { e.target.src = '/images/hero.png' }}
                 />
@@ -112,29 +112,29 @@ const MachineCarousel = () => {
               {/* Machine Details */}
               <div className="w-full lg:w-2/5 space-y-10">
                 <div>
+                  <span className="px-3 py-1 bg-brand-gold/10 border border-brand-gold/20 text-brand-gold text-[10px] font-black uppercase tracking-widest rounded-full mb-4 inline-block">
+                    {activeMachine.category === 'digital' ? 'Digital Printing' : 'Flexo & Label'}
+                  </span>
                   <h3 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tighter leading-none group">
                     {activeMachine.name}
                   </h3>
-                  <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
-                    {activeMachine.shortDesc}
-                  </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <div className="text-brand-gold text-[10px] font-black uppercase tracking-widest">Strength</div>
-                    <div className="text-white text-sm font-bold">{activeMachine.strength}</div>
+                    <div className="text-brand-gold text-[10px] font-black uppercase tracking-widest">Power</div>
+                    <div className="text-white text-sm font-bold">{activeMachine.power}</div>
                   </div>
                   <div className="space-y-2">
-                    <div className="text-brand-gold text-[10px] font-black uppercase tracking-widest">Category</div>
-                    <div className="text-white text-sm font-bold uppercase tracking-wider">
-                      {activeMachine.category}
+                    <div className="text-brand-gold text-[10px] font-black uppercase tracking-widest">Quality</div>
+                    <div className="text-white text-sm font-bold">
+                      {activeMachine.quality}
                     </div>
                   </div>
                 </div>
 
                 <div className="pt-10 flex flex-wrap gap-4">
-                  <Link 
+                  <Link
                     to="/our-machines"
                     className="px-10 py-5 bg-brand-gold text-brand-blue text-xs font-black uppercase tracking-[0.2em] rounded-full hover:bg-white transition-all shadow-glow-gold flex items-center gap-3"
                   >
@@ -155,9 +155,8 @@ const MachineCarousel = () => {
                 setDirection(idx > currentIndex ? 1 : -1);
                 setCurrentIndex(idx);
               }}
-              className={`h-1.5 rounded-full transition-all duration-500 ${
-                idx === currentIndex ? 'w-16 bg-brand-gold' : 'w-4 bg-white/10 hover:bg-white/20'
-              }`}
+              className={`h-1.5 rounded-full transition-all duration-500 ${idx === currentIndex ? 'w-16 bg-brand-gold' : 'w-4 bg-white/10 hover:bg-white/20'
+                }`}
             />
           ))}
         </div>

@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Zap, Shield, Cpu, Activity, LayoutGrid, List, ArrowRight, Settings } from 'lucide-react';
+import { Zap, Shield, Cpu, Activity, LayoutGrid, List, ArrowRight, Settings, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { machines, machineCategories } from '../data/machinesData';
 import SEO from '../components/SEO';
 
 const Machines = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [viewMode, setViewMode] = useState('grid'); // 'grid' or 'list'
+  const [selectedMachine, setSelectedMachine] = useState(null);
 
   const filteredMachines = activeCategory === 'all' 
     ? machines 
@@ -42,7 +44,7 @@ const Machines = () => {
               Production <span className="text-brand-gold">Precision.</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto font-light leading-relaxed">
-              24+ High-performance machines delivering uncompromised quality across Offset, Digital, and Flexo technologies.
+              High-performance industrial machinery delivering uncompromised print quality across advanced Digital and Flexo technologies.
             </p>
           </motion.div>
         </div>
@@ -134,35 +136,25 @@ const Machines = () => {
                   </div>
 
                   {/* Content Part */}
-                  <div className={`p-10 ${viewMode === 'list' ? 'lg:w-3/5' : ''}`}>
-                    <div className="flex justify-between items-start mb-6">
-                      <h3 className="text-2xl font-black text-brand-blue tracking-tight group-hover:text-brand-gold transition-colors">{machine.name}</h3>
-                      <div className="w-10 h-10 bg-brand-gray rounded-xl flex items-center justify-center text-brand-blue opacity-50 group-hover:opacity-100 transition-all">
-                        <Zap size={20} />
+                  <div className={`p-10 ${viewMode === 'list' ? 'lg:w-3/5' : ''} flex flex-col justify-between`}>
+                    <div>
+                      <div className="flex justify-between items-start mb-6">
+                        <h3 className="text-2xl font-black text-brand-blue tracking-tight group-hover:text-brand-gold transition-colors">{machine.name}</h3>
+                        <div className="w-10 h-10 bg-brand-gray rounded-xl flex items-center justify-center text-brand-blue opacity-50 group-hover:opacity-100 transition-all flex-shrink-0 ml-4">
+                          <Zap size={20} />
+                        </div>
                       </div>
-                    </div>
-                    
-                    <p className="text-gray-500 text-sm leading-relaxed mb-8 line-clamp-3">
-                      {machine.desc}
-                    </p>
 
-                    <div className="grid grid-cols-2 gap-6 mb-8">
-                      <div className="space-y-1">
-                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Strength</div>
-                        <div className="text-xs font-bold text-brand-blue">{machine.strength}</div>
+                      <div className="grid grid-cols-1 gap-6 mb-8">
+                        <div className="space-y-1">
+                          <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Power</div>
+                          <div className="text-xs font-bold text-brand-blue">{machine.power}</div>
+                        </div>
+                        <div className="space-y-1">
+                          <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Quality</div>
+                          <div className="text-xs font-bold text-brand-blue">{machine.quality}</div>
+                        </div>
                       </div>
-                      <div className="space-y-1">
-                        <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Quality</div>
-                        <div className="text-xs font-bold text-brand-blue">{machine.quality}</div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2 mb-10">
-                      {machine.capabilities.map((cap, i) => (
-                        <span key={i} className="px-3 py-1 bg-brand-gray rounded-full text-[9px] font-bold uppercase tracking-widest text-gray-600">
-                          {cap}
-                        </span>
-                      ))}
                     </div>
 
                     <div className="pt-8 border-t border-gray-50 flex items-center justify-between">
@@ -170,7 +162,10 @@ const Machines = () => {
                         <Shield size={16} />
                         <span className="text-[10px] font-black uppercase tracking-widest">Industrial Grade</span>
                       </div>
-                      <button className="text-brand-blue hover:text-brand-gold flex items-center gap-2 text-xs font-black uppercase tracking-widest group/btn">
+                      <button 
+                        onClick={() => setSelectedMachine(machine)}
+                        className="text-brand-blue hover:text-brand-gold flex items-center gap-2 text-xs font-black uppercase tracking-widest group/btn"
+                      >
                         Learn More <ArrowRight size={14} className="group-hover/btn:translate-x-1 transition-transform" />
                       </button>
                     </div>
@@ -181,6 +176,100 @@ const Machines = () => {
           </AnimatePresence>
         </div>
       </section>
+
+      {/* Detail Modal Pop-up */}
+      <AnimatePresence>
+        {selectedMachine && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedMachine(null)}
+              className="absolute inset-0 bg-brand-black/80 backdrop-blur-md"
+            />
+
+            {/* Modal Body */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="bg-white rounded-[3rem] border border-gray-100 max-w-4xl w-full overflow-hidden shadow-2xl relative z-10 flex flex-col md:flex-row max-h-[90vh] md:max-h-none overflow-y-auto md:overflow-visible"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setSelectedMachine(null)}
+                className="absolute top-6 right-6 w-12 h-12 bg-brand-gray text-brand-blue hover:bg-brand-gold hover:text-brand-blue rounded-full flex items-center justify-center transition-all z-20"
+              >
+                <X size={20} />
+              </button>
+
+              {/* Image Side */}
+              <div className="w-full md:w-1/2 h-[300px] md:h-auto relative overflow-hidden bg-brand-gray flex items-center justify-center">
+                <img
+                  src={selectedMachine.image}
+                  alt={selectedMachine.name}
+                  className="w-full h-full object-cover"
+                  onError={(e) => { e.target.src = '/images/hero.png' }}
+                />
+                <div className="absolute top-6 left-6">
+                  <span className="px-4 py-1.5 bg-brand-black/80 backdrop-blur-md text-brand-gold text-[10px] font-black uppercase tracking-widest rounded-full border border-white/10">
+                    {machineCategories.find(c => c.id === selectedMachine.category)?.name}
+                  </span>
+                </div>
+              </div>
+
+              {/* Specs Side */}
+              <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-between space-y-8">
+                <div className="space-y-6">
+                  <div>
+                    <span className="text-[10px] font-black text-brand-gold bg-brand-blue px-3 py-1 rounded-full uppercase tracking-widest inline-block mb-3">
+                      Industrial Equipment
+                    </span>
+                    <h3 className="text-3xl font-black text-brand-blue tracking-tight leading-none">
+                      {selectedMachine.name}
+                    </h3>
+                  </div>
+
+                  <div className="border-t border-gray-100 pt-6 space-y-6">
+                    <div className="space-y-2">
+                      <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                        <Zap size={14} className="text-brand-gold" />
+                        Power (Production Speed)
+                      </div>
+                      <div className="text-xs font-bold text-brand-blue bg-brand-gray p-4 rounded-2xl border border-gray-50">
+                        {selectedMachine.power}
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">
+                        <Cpu size={14} className="text-brand-gold" />
+                        Print Quality & Precision
+                      </div>
+                      <div className="text-xs font-bold text-brand-blue bg-brand-gray p-4 rounded-2xl border border-gray-50">
+                        {selectedMachine.quality}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-6">
+                  <Link
+                    to={`/contact?machine=${encodeURIComponent(selectedMachine.name)}`}
+                    onClick={() => setSelectedMachine(null)}
+                    className="w-full text-center px-8 py-5 bg-brand-gold text-brand-blue hover:bg-brand-blue hover:text-white font-black uppercase text-xs tracking-[0.2em] rounded-full transition-all shadow-glow-gold flex items-center justify-center gap-3"
+                  >
+                    Enquire Now <ArrowRight size={16} />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { Target, Flag, Users, Award, Shield, Sparkles, Star, X, Briefcase, GraduationCap, Quote } from 'lucide-react';
 import SEO from '../components/SEO';
+import TrustedPartners from '../components/TrustedPartners';
 
 const About = () => {
   const { scrollYProgress } = useScroll();
@@ -12,31 +13,31 @@ const About = () => {
     {
       name: 'Mr. Pradeep Bhatia',
       role: 'Founder',
-      image: '/images/hero.png',
+      image: '/images/pradeep_bhatia.png',
       bio: 'The visionary who laid the foundation of Hindustan Offset with a commitment to quality and integrity.',
       achievements: ['Founded in 1997', 'Established Regional Leadership', 'Visionary Excellence'],
       quote: 'Quality is not an act, it is a habit that defines our legacy.'
     },
     {
-      name: 'Mr. Bhatia',
+      name: 'Mr. Gulshan Bhatia',
       role: 'Co-Founder',
-      image: '/images/hero.png',
+      image: '/images/gulshan_bhatia.png',
       bio: 'Driving the expansion and technological adoption that transformed the press into an industrial leader.',
       achievements: ['Technological Modernization', 'Strategic Growth', 'Operational Excellence'],
       quote: 'Innovation is the heartbeat of industrial printing.'
     },
     {
       name: 'Sagar Bhatia',
-      role: 'Managing Director',
-      image: '/images/hero.png',
+      role: 'Operations Head',
+      image: '/images/sagar_bhatia.png',
       bio: 'Overseeing modern operations and ensuring that every client receives world-class service and precision.',
       achievements: ['Digital Transformation', 'Global Standards Compliance', 'Client Relationship Management'],
       quote: 'Precision is the bridge between a vision and its reality.'
     },
     {
       name: 'Manas Bhatia',
-      role: 'Director',
-      image: '/images/hero.png',
+      role: 'Operations Head',
+      image: '/images/manas_bhatia.png',
       bio: 'Fostering innovation and diversifying services to meet the evolving needs of modern brands.',
       achievements: ['Market Diversification', 'Brand Strategy', 'Sustainable Printing Practices'],
       quote: 'The future of printing is sustainable and luxury-focused.'
@@ -246,6 +247,9 @@ const About = () => {
           </div>
         )}
       </AnimatePresence>
+
+      {/* Trusted Partners Section */}
+      <TrustedPartners />
 
       {/* Mission & Vision */}
       <section className="py-24 bg-brand-black text-white relative overflow-hidden">
