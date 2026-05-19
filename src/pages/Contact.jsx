@@ -7,9 +7,11 @@ import {
   HelpCircle, ExternalLink, Shield, Star
 } from 'lucide-react';
 import { useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import SEO from '../components/SEO';
 
 const Contact = () => {
+  const location = useLocation();
   const [formState, setFormState] = useState('idle'); // idle, sending, success
   const { scrollY } = useScroll();
   const heroBgY = useTransform(scrollY, [0, 500], ["0%", "20%"]);
@@ -29,6 +31,18 @@ const Contact = () => {
     "Cosmetics Labels", "Pharma Labels", "Liquor Labels", "Packaging Printing",
     "Sticker Printing", "Corporate Branding Material", "Customized Printing Solutions", "Other"
   ];
+
+  const mapCategoryToService = (category) => {
+    if (!category) return services[0];
+    if (category === "Pouches") return "Pouches Printing";
+    if (category === "Packaging") return "Packaging Printing";
+    if (category === "Labels") return "Sticker Printing";
+    const directMatch = services.find(s => s.toLowerCase() === category.toLowerCase());
+    if (directMatch) return directMatch;
+    return services[0];
+  };
+
+  const [selectedService, setSelectedService] = useState(() => mapCategoryToService(location.state?.service));
 
   return (
     <div className="bg-brand-gray min-h-screen pb-24 overflow-hidden">
@@ -197,7 +211,11 @@ const Contact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="group space-y-3">
                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-6">Primary Service</label>
-                    <select className="w-full bg-gray-50 border-0 rounded-3xl px-8 py-5 text-brand-blue font-black focus:ring-4 focus:ring-brand-gold/10 focus:bg-white transition-all appearance-none cursor-pointer">
+                    <select 
+                      value={selectedService}
+                      onChange={(e) => setSelectedService(e.target.value)}
+                      className="w-full bg-gray-50 border-0 rounded-3xl px-8 py-5 text-brand-blue font-black focus:ring-4 focus:ring-brand-gold/10 focus:bg-white transition-all appearance-none cursor-pointer"
+                    >
                       {services.map(s => <option key={s}>{s}</option>)}
                     </select>
                   </div>

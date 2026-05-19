@@ -1,13 +1,17 @@
 import { motion } from 'framer-motion';
+import { clientFiles } from '../data/assetsData';
+
+// Dynamically load all client logo names from public/images/clients/ directory
+const loadClients = () => {
+  return clientFiles.map(filename => {
+    const clientName = filename.substring(0, filename.lastIndexOf('.'));
+    return clientName;
+  });
+};
+
+const clients = loadClients().sort((a, b) => a.localeCompare(b));
 
 const TrustedPartners = () => {
-  const clients = [
-    'ARK', 'Aculon', 'Arivas', 'Arowana', 'Astronia', 'Axter', 'Bioglass', 'Blexba', 'Cello', 'Dabur India',
-    'EB', 'Ellcare', 'Eureka Forbes', 'Exide Industries', 'Fexgen', 'Havells India', 'KTL', 'Keven', 'Konquill', 'Kriyon',
-    'Mahindra & Mahindra', 'Malkam', 'Mascot Health Series', 'Maxnova', 'Medicita', 'Medinova', 'Medplex', 'Nixi', 'Nizer', 'Novalife',
-    'Oscar', 'Patanjali', 'Pollen', 'Pritam International', 'Protech', 'Safecon', 'Vellinton', 'Vikpat', 'ed', 'indmark'
-  ];
-
   return (
     <section className="py-24 bg-white overflow-hidden border-y border-gray-50">
       <div className="container mx-auto px-4 md:px-8 mb-16 text-center">
