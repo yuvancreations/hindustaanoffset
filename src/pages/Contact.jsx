@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { 
-  MapPin, Phone, Mail, Clock, Send, CheckCircle2, 
-  Sparkles, MessageSquare, Globe, ArrowRight, 
+import {
+  MapPin, Phone, Mail, Clock, Send, CheckCircle2,
+  Sparkles, MessageSquare, Globe, ArrowRight,
   User, Building2, Smartphone, Map, ClipboardList,
   Layers, Package, Calendar, Timer, IndianRupee,
   HelpCircle, ExternalLink, Shield, Star
@@ -15,15 +15,6 @@ const Contact = () => {
   const [formState, setFormState] = useState('idle'); // idle, sending, success
   const { scrollY } = useScroll();
   const heroBgY = useTransform(scrollY, [0, 500], ["0%", "20%"]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormState('sending');
-    setTimeout(() => {
-      setFormState('success');
-      setTimeout(() => setFormState('idle'), 4000);
-    }, 2000);
-  };
 
   const services = [
     "Offset Printing", "Digital Printing", "Brochure Printing", "Catalogue Printing",
@@ -44,9 +35,68 @@ const Contact = () => {
 
   const [selectedService, setSelectedService] = useState(() => mapCategoryToService(location.state?.service));
 
+  const [formData, setFormData] = useState({
+    fullName: '',
+    companyName: '',
+    email: '',
+    mobileNumber: '',
+    quantity: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormState('sending');
+
+    const submitData = {
+      ...formData,
+      service: selectedService,
+      pageSource: window.location.href,
+      deviceType: navigator.userAgent
+    };
+
+    try {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbxbc8czltr_HG8xAl4EMpRIuMS_j1A0awJgRBj3SSL-7vwsqfpffVFiPdbSpLXKiZwo/exec", {
+        method: "POST",
+        body: JSON.stringify(submitData)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFormState('success');
+        setFormData({
+          fullName: '',
+          companyName: '',
+          email: '',
+          mobileNumber: '',
+          quantity: '',
+          message: ''
+        });
+        setSelectedService(services[0]);
+        setTimeout(() => setFormState('idle'), 4000);
+      } else {
+        console.error(result.error);
+        setFormState('idle');
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error(error);
+      setFormState('idle');
+      alert("Something went wrong. Please check your internet connection and try again. It's possible that the Apps Script URL is invalid or CORS blocked it.");
+    }
+  };
+
   return (
     <div className="bg-brand-gray min-h-screen pb-24 overflow-hidden">
-      <SEO 
+      <SEO
         title="B2B Printing Inquiry | The Hindustan Offset Printers"
         description="Elite industrial printing inquiry system for global brands. Request quotes for high-volume labels, packaging, and digital offset services."
         keywords="premium printing contact, B2B printing quotes, luxury packaging inquiry, Haridwar industrial printing"
@@ -57,35 +107,35 @@ const Contact = () => {
       <section className="relative pt-52 pb-44 bg-brand-black text-white overflow-hidden">
         {/* Dynamic Background Elements */}
         <div className="absolute inset-0 z-0">
-          <motion.div 
+          <motion.div
             style={{ y: heroBgY }}
             className="absolute inset-0 opacity-40"
           >
             <img src="/images/hero.png" alt="Industrial Excellence" className="w-full h-full object-cover scale-110" />
             <div className="absolute inset-0 bg-gradient-to-b from-brand-black via-brand-black/40 to-brand-gray"></div>
           </motion.div>
-          
+
           {/* Floating Animated Orbs */}
-          <motion.div 
-            animate={{ 
-              x: [0, 100, 0], 
+          <motion.div
+            animate={{
+              x: [0, 100, 0],
               y: [0, -50, 0],
-              opacity: [0.2, 0.4, 0.2] 
+              opacity: [0.2, 0.4, 0.2]
             }}
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
             className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-brand-blue/30 rounded-full blur-[120px]"
           ></motion.div>
-          <motion.div 
-            animate={{ 
-              x: [0, -80, 0], 
+          <motion.div
+            animate={{
+              x: [0, -80, 0],
               y: [0, 100, 0],
-              opacity: [0.1, 0.3, 0.1] 
+              opacity: [0.1, 0.3, 0.1]
             }}
             transition={{ duration: 15, repeat: Infinity, ease: "easeInOut", delay: 2 }}
             className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-gold/10 rounded-full blur-[150px]"
           ></motion.div>
         </div>
-        
+
         <div className="container mx-auto px-4 md:px-8 relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -108,7 +158,7 @@ const Contact = () => {
 
       <div className="container mx-auto px-4 md:px-12 -mt-32 relative z-20">
         <div className="flex flex-col lg:flex-row gap-12">
-          
+
           {/* LEFT: Premium Info Column */}
           <div className="lg:w-[35%] space-y-10">
             {/* Glass Info Cards */}
@@ -118,7 +168,7 @@ const Contact = () => {
                 { icon: <Mail />, title: 'Corporate Mail', details: ['hindustanoffset@gmail.com'], sub: 'Response within 2 business hours', color: 'text-brand-blue' },
                 { icon: <Map />, title: 'Headquarters', details: ['Santosh Vihar, Arya Nagar, Jwalapur'], sub: 'Haridwar, Uttarakhand 249407', color: 'text-brand-gold' }
               ].map((item, idx) => (
-                <motion.div 
+                <motion.div
                   key={idx}
                   initial={{ opacity: 0, x: -50 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -142,14 +192,14 @@ const Contact = () => {
             </div>
 
             {/* Premium Map Embed */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               className="bg-white p-6 rounded-[4rem] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border-8 border-white overflow-hidden h-[450px] relative group"
             >
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3459.7422037190574!2d78.11545627546054!3d29.929285074983054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3909477000000001%3A0x6b74686411516f2b!2sThe%20Hindustan%20Offset%20Printers!5e0!3m2!1sen!2sin!4v1715788000000!5m2!1sen!2sin" 
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3459.7422037190574!2d78.11545627546054!3d29.929285074983054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3909477000000001%3A0x6b74686411516f2b!2sThe%20Hindustan%20Offset%20Printers!5e0!3m2!1sen!2sin!4v1715788000000!5m2!1sen!2sin"
                 width="100%" height="100%" style={{ border: 0 }} allowFullScreen="" loading="lazy" className="rounded-[3rem] grayscale group-hover:grayscale-0 transition-all duration-1000"
               ></iframe>
               <div className="absolute inset-0 bg-brand-blue/10 pointer-events-none"></div>
@@ -163,7 +213,7 @@ const Contact = () => {
 
           {/* RIGHT: Ultra-Attractive Inquiry Form */}
           <div className="lg:w-[65%]">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -171,7 +221,7 @@ const Contact = () => {
             >
               {/* Form Glow */}
               <div className="absolute -top-24 -right-24 w-64 h-64 bg-brand-gold/5 rounded-full blur-[80px]"></div>
-              
+
               <div className="relative z-10 mb-20">
                 <div className="flex items-center gap-4 mb-8 text-brand-gold">
                   <div className="w-12 h-[2px] bg-brand-gold"></div>
@@ -187,10 +237,10 @@ const Contact = () => {
                 {/* Form Sections with Floating Labels */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   {[
-                    { label: 'Full Name', placeholder: 'Alexander Pierce', icon: <User size={16} /> },
-                    { label: 'Company Name', placeholder: 'Global Pharmaceuticals Ltd', icon: <Building2 size={16} /> },
-                    { label: 'Business Email', placeholder: 'exec@company.com', icon: <Mail size={16} /> },
-                    { label: 'Contact Number', placeholder: '+91 98XXX XXXXX', icon: <Smartphone size={16} /> }
+                    { label: 'Full Name', name: 'fullName', placeholder: 'Alexander Pierce', icon: <User size={16} /> },
+                    { label: 'Company Name', name: 'companyName', placeholder: 'Global Pharmaceuticals Ltd', icon: <Building2 size={16} /> },
+                    { label: 'Business Email', name: 'email', placeholder: 'exec@company.com', icon: <Mail size={16} /> },
+                    { label: 'Contact Number', name: 'mobileNumber', placeholder: '+91 98XXX XXXXX', icon: <Smartphone size={16} /> }
                   ].map((field, i) => (
                     <div key={i} className="group space-y-3">
                       <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-6 group-focus-within:text-brand-gold transition-colors">{field.label}</label>
@@ -198,9 +248,13 @@ const Contact = () => {
                         <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-300 group-focus-within:text-brand-gold transition-colors">
                           {field.icon}
                         </div>
-                        <input 
-                          type="text" 
-                          placeholder={field.placeholder} 
+                        <input
+                          type={field.name === 'email' ? 'email' : 'text'}
+                          name={field.name}
+                          value={formData[field.name]}
+                          onChange={handleChange}
+                          required={field.name !== 'companyName'}
+                          placeholder={field.placeholder}
                           className="w-full bg-gray-50 border-0 rounded-3xl pl-16 pr-8 py-5 text-brand-blue font-black focus:ring-4 focus:ring-brand-gold/10 focus:bg-white transition-all placeholder:text-gray-200"
                         />
                       </div>
@@ -211,7 +265,7 @@ const Contact = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <div className="group space-y-3">
                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-6">Primary Service</label>
-                    <select 
+                    <select
                       value={selectedService}
                       onChange={(e) => setSelectedService(e.target.value)}
                       className="w-full bg-gray-50 border-0 rounded-3xl px-8 py-5 text-brand-blue font-black focus:ring-4 focus:ring-brand-gold/10 focus:bg-white transition-all appearance-none cursor-pointer"
@@ -221,23 +275,37 @@ const Contact = () => {
                   </div>
                   <div className="group space-y-3">
                     <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-6">Quantity Requirement</label>
-                    <input type="text" placeholder="e.g. 1 Million Units" className="w-full bg-gray-50 border-0 rounded-3xl px-8 py-5 text-brand-blue font-black focus:ring-4 focus:ring-brand-gold/10 focus:bg-white transition-all placeholder:text-gray-200" />
+                    <input
+                      type="text"
+                      name="quantity"
+                      value={formData.quantity}
+                      onChange={handleChange}
+                      placeholder="e.g. 1 Million Units"
+                      className="w-full bg-gray-50 border-0 rounded-3xl px-8 py-5 text-brand-blue font-black focus:ring-4 focus:ring-brand-gold/10 focus:bg-white transition-all placeholder:text-gray-200"
+                    />
                   </div>
                 </div>
 
                 <div className="group space-y-3">
                   <label className="text-[10px] font-black text-gray-400 uppercase tracking-widest ml-6">Detailed Project Brief</label>
-                  <textarea rows="5" placeholder="Describe your material specs, size, and urgency..." className="w-full bg-gray-50 border-0 rounded-[3rem] px-8 py-8 text-brand-blue font-black focus:ring-4 focus:ring-brand-gold/10 focus:bg-white transition-all placeholder:text-gray-200 resize-none"></textarea>
+                  <textarea
+                    rows="5"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    placeholder="Describe your material specs, size, and urgency..."
+                    className="w-full bg-gray-50 border-0 rounded-[3rem] px-8 py-8 text-brand-blue font-black focus:ring-4 focus:ring-brand-gold/10 focus:bg-white transition-all placeholder:text-gray-200 resize-none"
+                  ></textarea>
                 </div>
 
                 <div className="pt-10">
-                  <motion.button 
+                  <motion.button
                     whileHover={{ scale: 1.02, boxShadow: '0 20px 40px -10px rgba(212,175,55,0.4)' }}
                     whileTap={{ scale: 0.98 }}
                     disabled={formState !== 'idle'}
-                    className={`w-full py-8 rounded-full font-black text-sm uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-4 relative overflow-hidden ${
-                      formState === 'success' ? 'bg-green-500 text-white' : 'bg-brand-blue text-white group'
-                    }`}
+                    className={`w-full py-8 rounded-full font-black text-sm uppercase tracking-[0.3em] transition-all flex items-center justify-center gap-4 relative overflow-hidden ${formState === 'success' ? 'bg-green-500 text-white' : 'bg-brand-blue text-white group'
+                      }`}
                   >
                     <AnimatePresence mode="wait">
                       {formState === 'idle' ? (
@@ -253,7 +321,7 @@ const Contact = () => {
                       )}
                     </AnimatePresence>
                   </motion.button>
-                  
+
                   <div className="mt-10 flex items-center justify-center gap-4 text-gray-400">
                     <Shield size={16} className="text-brand-gold" />
                     <span className="text-[10px] font-black uppercase tracking-[0.2em]">100% Data Confidentiality Guaranteed</span>
@@ -264,12 +332,12 @@ const Contact = () => {
               {/* Ultra Success Overlay */}
               <AnimatePresence>
                 {formState === 'success' && (
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
                     animate={{ opacity: 1, backdropFilter: 'blur(10px)' }}
                     className="absolute inset-0 bg-white/95 z-50 flex flex-col items-center justify-center p-20 text-center"
                   >
-                    <motion.div 
+                    <motion.div
                       initial={{ scale: 0.5, rotate: -45 }}
                       animate={{ scale: 1, rotate: 0 }}
                       className="w-32 h-32 bg-brand-gold text-brand-blue rounded-full flex items-center justify-center mb-12 shadow-glow-gold"
@@ -278,7 +346,7 @@ const Contact = () => {
                     </motion.div>
                     <h3 className="text-6xl font-black text-brand-blue mb-6 uppercase tracking-tighter italic leading-none">Brief <br /> <span className="text-brand-gold">Accepted.</span></h3>
                     <p className="text-gray-500 font-bold text-xl mb-12 max-w-sm leading-relaxed">Our senior production desk is now analyzing your brief. Expect a response within 120 minutes.</p>
-                    <motion.button 
+                    <motion.button
                       whileHover={{ scale: 1.05 }}
                       onClick={() => setFormState('idle')}
                       className="px-16 py-5 bg-brand-blue text-white rounded-full font-black text-xs uppercase tracking-widest shadow-2xl"
@@ -303,7 +371,7 @@ const Contact = () => {
               { icon: <IndianRupee />, title: 'Direct Scale', desc: 'Industrial pricing' },
               { icon: <Globe />, title: 'Global reach', desc: 'PAN India delivery' }
             ].map((badge, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 whileHover={{ y: -10 }}
                 className="flex flex-col items-center group"

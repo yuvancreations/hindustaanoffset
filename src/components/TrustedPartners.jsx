@@ -38,7 +38,7 @@ const TrustedPartners = () => {
                 <img
                   src={`/images/clients/${encodeURIComponent(client)}.png`}
                   alt={`${client} logo`}
-                  className="max-h-full max-w-full object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                  className="max-h-full max-w-full object-contain transition-all duration-500"
                   onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
                 />
                 <span className="hidden text-[8px] font-black text-brand-blue/20 uppercase tracking-tighter">Logo</span>

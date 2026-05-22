@@ -3,16 +3,19 @@
 
 export const clientFiles = [
   "Aculon.png",
+  "Akums.png",
   "Arivas.png",
   "ARK.png",
   "Arowana.png",
   "Astronia.png",
   "Cello.png",
+  "Coloressence.png",
   "Dabur India.png",
   "ed.png",
   "Eureka Forbes.png",
   "Exide Industries.png",
   "Havells India.png",
+  "Hero.png",
   "indmark.png",
   "Keven.png",
   "Konquill.png",
@@ -28,7 +31,10 @@ export const clientFiles = [
   "Pollen.png",
   "Pritam International.png",
   "Protech.png",
+  "Rivpra.png",
   "Safecon.png",
+  "Signoraware.png",
+  "Trueware.png",
   "Vellinton.png",
   "Vikpat.png"
 ];
